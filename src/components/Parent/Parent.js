@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import Person from "./components/Person";
-
-function App() {
-  const [message, setMessage] = useState("");
-
-  // const callbackFunction = (childData) => {
-  //   setMessage(childData);
-  // };
-  //parentCallback={callbackFunction}
-
+import React from "react";
+import Child from "./Child";
+export default function Parent() {
+  // function clickAlert(data) {
+  //   console.log(data);
+  // }
 
   const personList = [
     {
@@ -34,21 +29,18 @@ function App() {
     },
   ];
 
-  let detail = "";
-  if (message) {
-    detail = message;
-  }
-
   const showList = personList.map((item) => (
-    <Person  key={item.id} personList={item} />
+    <Child
+      key={item.id}
+      data="Click here"
+      // onChildClick={clickAlert}
+      personList={item}
+    />
   ));
 
   return (
     <div>
-      <div>show detail : {detail.id}</div>
       <ul>{showList}</ul>
     </div>
   );
 }
-
-export default App;
