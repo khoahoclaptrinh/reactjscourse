@@ -10,13 +10,14 @@ export default class Parent extends Component {
   handleClick(data) {
     alert("I am working" + data);
   }
+
   render() {
     return (
       <div>
         <Child
-          data="my data"
+          data="this is demo"
           onChildClick={this.handleClick}
-          // onClick={() => this.handleClick()}
+          onClick={() => this.handleClick()}
         />
       </div>
     );

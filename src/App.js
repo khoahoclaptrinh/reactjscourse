@@ -4,11 +4,10 @@ import Person from "./components/Person";
 function App() {
   const [message, setMessage] = useState("");
 
-  // const callbackFunction = (childData) => {
-  //   setMessage(childData);
-  // };
+  const callbackFunction = (childData) => {
+    setMessage(childData);
+  };
   //parentCallback={callbackFunction}
-
 
   const personList = [
     {
@@ -40,12 +39,12 @@ function App() {
   }
 
   const showList = personList.map((item) => (
-    <Person  key={item.id} personList={item} />
+    <Person parentCallback={callbackFunction} key={item.id} personList={item} />
   ));
 
   return (
     <div>
-      <div>show detail : {detail.id}</div>
+      <div>show detail : {detail.name}</div>
       <ul>{showList}</ul>
     </div>
   );

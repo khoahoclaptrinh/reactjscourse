@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-//import App from "./App";
+import App from "./App";
 //import Parent from "./components/Parent/Parent";
-import Parent from "./components/Parent2/Parent";
+//import Parent from "./components/Parent2/Parent";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Parent />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

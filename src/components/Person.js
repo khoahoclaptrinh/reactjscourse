@@ -3,10 +3,9 @@ const Person = (props) => {
   //let personCallBack = props.parentCallback;
 
   //console.log(props);
-  // const sendData = (person) => {
-  //   props.parentCallback(person);
-  // };
-
+  const sendData = (person) => {
+    props.parentCallback(person);
+  };
 
   return (
     <li
@@ -24,9 +23,9 @@ const Person = (props) => {
         <img
           src={person.avatar}
           alt={person.name}
-          // onClick={() => {
-          //   sendData(person);
-          // }}
+          onClick={() => {
+            sendData(person);
+          }}
         />
       </p>
     </li>

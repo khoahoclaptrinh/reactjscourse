@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 export default class Child extends Component {
   handleClick = () => {
-    this.props.onChildClick("ssssssssssssss");
+    this.props.onChildClick("  child data");
   };
 
   // handleClick() {
-  //   console.log('this is:', this);
+  //   console.log("this is:", this);
   // }
 
   // onClick={() => this.handleClick()}

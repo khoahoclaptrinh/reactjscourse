@@ -1,9 +1,9 @@
 import React from "react";
 import Child from "./Child";
 export default function Parent() {
-  // function clickAlert(data) {
-  //   console.log(data);
-  // }
+  function clickAlert(data) {
+    console.log(data);
+  }
 
   const personList = [
     {
@@ -33,7 +33,7 @@ export default function Parent() {
     <Child
       key={item.id}
       data="Click here"
-      // onChildClick={clickAlert}
+      onChildClick={clickAlert}
       personList={item}
     />
   ));
