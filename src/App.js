@@ -1,51 +1,25 @@
-import React, { useState } from "react";
-import Person from "./components/Person";
+import React, { useState, useEffect } from "react";
+import { getAll, showList } from "./actions/postActions";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  const [message, setMessage] = useState("");
+  const dataPost = useSelector((state) => state.postReducer);
+  const dispatch = useDispatch();
 
-  const callbackFunction = (childData) => {
-    setMessage(childData);
-  };
-  //parentCallback={callbackFunction}
+  useEffect(() => {
+    dispatch(showList());
+  }, []);
 
-  const personList = [
-    {
-      id: 1,
-      name: "T-shirt for Programmers India",
-      email: "example@gmail.com",
-      avatar:
-        "https://cdn.shopify.com/s/files/1/0984/4522/products/order-pizza-code-5_large.jpg",
-    },
-    {
-      id: 2,
-      name: "T-shirt for Programmers Viet Nam",
-      email: "example2@gmail.com",
-      avatar:
-        "https://cdn.shopify.com/s/files/1/0984/4522/products/order-pizza-code-6_large.jpg",
-    },
-    {
-      id: 3,
-      name: "T-shirt for Programmers USA",
-      email: "example3@gmail.com",
-      avatar:
-        "https://cdn.shopify.com/s/files/1/0984/4522/products/order-pizza-code-4_large.jpg",
-    },
-  ];
+  const { post, error } = dataPost;
 
-  let detail = "";
-  if (message) {
-    detail = message;
+  let listItems;
+  if (post && error === 0) {
+    listItems = post.map((item) => <li key={item.id}>{item.title}</li>);
   }
-
-  const showList = personList.map((item) => (
-    <Person parentCallback={callbackFunction} key={item.id} personList={item} />
-  ));
 
   return (
     <div>
-      <div>show detail : {detail.name}</div>
-      <ul>{showList}</ul>
+      <ul>{listItems}</ul>
     </div>
   );
 }
