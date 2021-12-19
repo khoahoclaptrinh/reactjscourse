@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { getAll, showList } from "./actions/postActions";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Main from "./containers/layouts/Main";
+import Home from "./containers/Main/Home/Home";
+import About from "./containers/Main/About/About";
 
 function App() {
-  const dataPost = useSelector((state) => state.postReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(showList());
-  }, []);
-
-  const { post, error } = dataPost;
-
-  let listItems;
-  if (post && error === 0) {
-    listItems = post.map((item) => <li key={item.id}>{item.title}</li>);
-  }
-
   return (
-    <div>
-      <ul>{listItems}</ul>
-    </div>
+    <Router>
+      <Switch>
+        <Route>
+          <Main>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/about" component={About} />
+            </Switch>
+          </Main>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
