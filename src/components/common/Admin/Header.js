@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-md navbar-light  fixed-top bg-light">
+      <nav className="navbar navbar-expand-md navbar-dark  fixed-top bg-dark">
         <div className="container-fluid">
           <Link className="nav-link active" to="/" aria-current="page">
             <img
@@ -24,28 +24,23 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="/" aria-current="page">
+                <Link
+                  className="nav-link active"
+                  to="/admin"
+                  aria-current="page"
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/post">
+                <Link className="nav-link" to="/admin/post">
                   Post
                 </Link>
               </li>
+
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/admin">
-                  Admin
+                <Link className="nav-link" to="/">
+                  Web
                 </Link>
               </li>
             </ul>
