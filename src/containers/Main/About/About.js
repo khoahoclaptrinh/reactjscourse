@@ -30,10 +30,12 @@ export default function About() {
   if (post && error === 0) {
     content = (
       <>
-        <h1>{post.data.name}</h1>
+        <h1>{post.data.name || ""}</h1>
         <div class="card shadow-sm p-3 mb-5 bg-body rounded">
           <div class="card-body">
-            <div dangerouslySetInnerHTML={{ __html: post.data.description }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: post.data.description || "" }}
+            />
           </div>
         </div>
       </>
