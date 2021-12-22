@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAll, showList } from "./actions/postActions";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "react-bootstrap/Button";
 
 function App() {
   const dataPost = useSelector((state) => state.postReducer);
@@ -20,7 +19,6 @@ function App() {
 
   return (
     <div>
-      <Button>sss</Button>
       <ul>{listItems}</ul>
     </div>
   );

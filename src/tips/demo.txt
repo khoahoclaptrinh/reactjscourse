@@ -1,0 +1,34 @@
+https://www.freecodecamp.org/news/build-better-react-apps-with-these-tricks/
+https://dev.to/simonholdorf/10-tips-tricks-that-will-make-you-a-better-reactjs-dev-4fhn
+
+https://codeschool.vn/portal/cac-thu-thuat-voi-jsx-trong-react-phan-1/
+
+
+{ return loginAttempts < maxAttempts ? <MyComponent/> : null }
+
+{ return loginAttempts < maxAttempts && <MyComponent/> }
+
+
+<div>
+   { condition ? <strong>True</strong> : <em>False</em> }
+</div>
+
+
+<div>
+   { condition ? <strong>True</strong> : null }
+</div>
+
+
+<div>
+   { condition && <strong>True</strong> }
+</div>
+
+
+<div>
+   { condition || <strong>True – Cách 1</strong> }
+   { !condition && <strong>True – Cách 2, chú ý dấu ! phủ định</strong> }
+</div>
+
+
+<h1>{props.title || <Skeleton />}</h1>
+{props.body || <Skeleton count={10} />}

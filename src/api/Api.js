@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: `http://jsonplaceholder.typicode.com/`,
+  baseURL: `http://laravelcourse.local/api/v1/`,
 });
