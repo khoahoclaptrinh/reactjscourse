@@ -4,6 +4,7 @@ import {
   FET_POSTS,
   LOADING_POST,
 } from "../constants/postTypes";
+
 const postReducer = (state = {}, action) => {
   switch (action.type) {
     case LOADING_POST:
