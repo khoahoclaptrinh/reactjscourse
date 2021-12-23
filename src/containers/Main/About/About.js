@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import parse from "html-react-parser";
 import { showDetail } from "../../../actions/postActions";
 export default function About() {
   const dataPost = useSelector((state) => state.postReducer);
@@ -14,7 +15,7 @@ export default function About() {
 
   const { post, error, loading } = dataPost;
 
-  if (loading) {
+  if (loading || (post && post.data == null)) {
     return (
       <section className="py-5 text-center container">
         <div className="row py-lg-5">
@@ -28,15 +29,12 @@ export default function About() {
 
   let content = "";
   if (post && error === 0) {
+    const description = post.data.description || "";
     content = (
       <>
         <h1>{post.data.name || ""}</h1>
         <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-          <div class="card-body">
-            <div
-              dangerouslySetInnerHTML={{ __html: post.data.description || "" }}
-            />
-          </div>
+          <div class="card-body">{parse(description)}</div>
         </div>
       </>
     );

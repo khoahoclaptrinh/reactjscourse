@@ -32,3 +32,5 @@ https://codeschool.vn/portal/cac-thu-thuat-voi-jsx-trong-react-phan-1/
 
 <h1>{props.title || <Skeleton />}</h1>
 {props.body || <Skeleton count={10} />}
+
+{!!condition}}
