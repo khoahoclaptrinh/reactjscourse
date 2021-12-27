@@ -1,10 +1,88 @@
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import parse from "html-react-parser";
+import Skeleton from "react-loading-skeleton";
+import { getAll } from "../../../actions/postActions";
+import ReactPaginate from "react-paginate";
+
 export default function Post() {
+  const dataPost = useSelector((state) => state.postReducer);
+  const dispatch = useDispatch();
+  const [pageOffset, setPageOffset] = useState(1);
+  //const [pageCount, setPageCount] = useState(0);
+
+  useEffect(() => {
+    const params = {};
+    dispatch(getAll(params));
+  }, []);
+
+  const handlePageChange = (event) => {
+    setPageOffset(event.selected);
+    const params = {
+      page: event.selected + 1,
+    };
+    dispatch(getAll(params));
+  };
+
+  const { post, error, loading } = dataPost;
+
+  if (loading || (post && post.items == null)) {
+    return (
+      <section className="py-5 text-center container">
+        <div className="row py-lg-5">
+          <div className="col-lg-6 col-md-8 mx-auto">
+            <Skeleton height={5} count={5} width={600} />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  let content = "";
+  let pageCount = 1;
+  let perPage = 20;
+  if (post && error === 0) {
+    perPage = post.perPage;
+    pageCount = Math.ceil(post.total / perPage);
+
+    content = (
+      <>
+        {post.items &&
+          post.items.map((item) => (
+            <div key={item.id}>
+              <h3>{item.name}</h3>
+            </div>
+          ))}
+      </>
+    );
+  }
+
   return (
     <section className="py-5 text-center container">
       <div className="row py-lg-5">
-        <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">Post</h1>
-        </div>
+        <div className="col-lg-6 col-md-8 mx-auto"></div>
+        {content}
+
+        <ReactPaginate
+          previousLabel="Previous"
+          nextLabel="Next"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={10}
+          onPageChange={handlePageChange}
+          containerClassName="pagination"
+          activeClassName="active"
+          forcePage={pageOffset}
+        />
       </div>
     </section>
   );

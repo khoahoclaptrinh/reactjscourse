@@ -9,7 +9,7 @@ export default function About() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let id = 1;
+    let id = 402;
     dispatch(showDetail(id));
   }, []);
 
@@ -33,8 +33,8 @@ export default function About() {
     content = (
       <>
         <h1>{post.data.name || ""}</h1>
-        <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-          <div class="card-body">{parse(description)}</div>
+        <div className="card shadow-sm p-3 mb-5 bg-body rounded">
+          <div className="card-body">{parse(description)}</div>
         </div>
       </>
     );

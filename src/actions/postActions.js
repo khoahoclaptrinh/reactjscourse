@@ -23,16 +23,30 @@ export const showList = () => async (dispatch) => {
   }
 };
 
-export const getAll = () => {
+export const getAll = (params) => {
   return async function (dispatch) {
-    //dispatch(searchRequest());
+    dispatch({
+      type: LOADING_POST,
+      payload: [],
+      message: "Loading...",
+      loading: true,
+    });
+
     try {
-      const response = await Api.get("/posts");
-      dispatch({ type: "FET_POSTS", payload: response.data });
+      const response = await Api.get("/news", { params });
+      dispatch({
+        type: "FET_POSTS",
+        payload: response.data.data,
+        message: response.message,
+        loading: false,
+      });
     } catch (error) {
       dispatch({
         type: FET_POSTS_ERROR,
         payload: [],
+        error: 1,
+        message: error,
+        loading: false,
       });
     }
   };
