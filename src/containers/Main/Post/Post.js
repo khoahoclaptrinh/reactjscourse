@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 export default function Post() {
   const dataPost = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
-  const [pageOffset, setPageOffset] = useState(1);
+  const [pageOffset, setPageOffset] = useState(0);
   //const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export default function Post() {
     const params = {
       page: event.selected + 1,
     };
+
     dispatch(getAll(params));
   };
 
@@ -50,7 +51,9 @@ export default function Post() {
         {post.items &&
           post.items.map((item) => (
             <div key={item.id}>
-              <h3>{item.name}</h3>
+              <div className="alert alert-primary" role="alert">
+                {item.name}
+              </div>
             </div>
           ))}
       </>
@@ -77,7 +80,7 @@ export default function Post() {
           breakLinkClassName="page-link"
           pageCount={pageCount}
           marginPagesDisplayed={2}
-          pageRangeDisplayed={10}
+          pageRangeDisplayed={3}
           onPageChange={handlePageChange}
           containerClassName="pagination"
           activeClassName="active"
