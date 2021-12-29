@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import parse from "html-react-parser";
 import { getAll } from "../../../actions/postActions";
 import ReactPaginate from "react-paginate";
-import Loading from "../../../components/common/Loading";
-import ListPost from "../../../components/Post/ListPost";
-import Pagination from "../../../components/common/Pagination";
+//import Loading from "../../../components/common/Loading";
+//import ListPost from "../../../components/Post/ListPost";
+//import Pagination from "../../../components/common/Pagination";
+import Skeleton from "react-loading-skeleton";
 
 export default function Post() {
   const dataPost = useSelector((state) => state.postReducer);
@@ -29,7 +30,16 @@ export default function Post() {
   const { post, error, loading } = dataPost;
 
   if (loading || (post && post.items == null)) {
-    return <Loading />;
+    return (
+      <section className="py-5 text-center container">
+        <div className="row py-lg-5">
+          <div className="col-lg-6 col-md-8 mx-auto">
+            <Skeleton height={5} count={5} width={600} />
+          </div>
+        </div>
+      </section>
+    );
+    //return <Loading />;
   }
 
   let content = "";
