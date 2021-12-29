@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: `http://laravelcourse.local/api/v1/`,
+  baseURL: `https://api.khoahoclaptrinh.top/api/v1/`,
 });
