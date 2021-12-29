@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import parse from "html-react-parser";
-import Skeleton from "react-loading-skeleton";
 import { getAll } from "../../../actions/postActions";
 import ReactPaginate from "react-paginate";
+import Loading from "../../../components/common/Loading";
+import ListPost from "../../../components/Post/ListPost";
+import Pagination from "../../../components/common/Pagination";
 
 export default function Post() {
   const dataPost = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
   const [pageOffset, setPageOffset] = useState(0);
-  //const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
     const params = {};
@@ -28,24 +30,15 @@ export default function Post() {
   const { post, error, loading } = dataPost;
 
   if (loading || (post && post.items == null)) {
-    return (
-      <section className="py-5 text-center container">
-        <div className="row py-lg-5">
-          <div className="col-lg-6 col-md-8 mx-auto">
-            <Skeleton height={5} count={5} width={600} />
-          </div>
-        </div>
-      </section>
-    );
+    return <Loading />;
   }
 
   let content = "";
-  let pageCount = 1;
+  var totalPage = 0;
   let perPage = 20;
   if (post && error === 0) {
     perPage = post.perPage;
-    pageCount = Math.ceil(post.total / perPage);
-
+    totalPage = Math.ceil(post.total / perPage);
     content = (
       <>
         {post.items &&
@@ -58,6 +51,8 @@ export default function Post() {
           ))}
       </>
     );
+
+    //content = <ListPost dataPost={post.items} />;
   }
 
   return (
@@ -78,7 +73,7 @@ export default function Post() {
           breakLabel="..."
           breakClassName="page-item"
           breakLinkClassName="page-link"
-          pageCount={pageCount}
+          pageCount={totalPage}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
           onPageChange={handlePageChange}
@@ -86,6 +81,12 @@ export default function Post() {
           activeClassName="active"
           forcePage={pageOffset}
         />
+
+        {/* <Pagination
+          totalPage={totalPage}
+          handlePageChange={handlePageChange}
+          pageOffset={pageOffset}
+        /> */}
       </div>
     </section>
   );

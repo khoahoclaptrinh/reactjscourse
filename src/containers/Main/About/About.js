@@ -4,6 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import parse from "html-react-parser";
 import { showDetail } from "../../../actions/postActions";
+import Loading from "../../../components/common/Loading";
 export default function About() {
   const dataPost = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
@@ -16,15 +17,7 @@ export default function About() {
   const { post, error, loading } = dataPost;
 
   if (loading || (post && post.data == null)) {
-    return (
-      <section className="py-5 text-center container">
-        <div className="row py-lg-5">
-          <div className="col-lg-6 col-md-8 mx-auto">
-            <Skeleton height={5} count={5} width={600} />
-          </div>
-        </div>
-      </section>
-    );
+    return <Loading />;
   }
 
   let content = "";
