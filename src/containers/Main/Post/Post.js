@@ -11,7 +11,6 @@ export default function Post() {
   const dataPost = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
   const [pageOffset, setPageOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
     const params = {};
