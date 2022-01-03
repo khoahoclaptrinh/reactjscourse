@@ -12,6 +12,9 @@ export default function Post() {
   const [pageOffset, setPageOffset] = useState(0);
   const [keyword, setKeyword] = useState("");
 
+  /**
+   * Gọi Api để lấy dữ liệu bài viết
+   */
   useEffect(() => {
     const params = {};
     dispatch(getAll(params));
