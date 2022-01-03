@@ -17,6 +17,7 @@ export default function Post() {
    */
   useEffect(() => {
     const params = {};
+    //setKeyword("");
     dispatch(getAll(params));
   }, []);
 
@@ -28,7 +29,7 @@ export default function Post() {
     setPageOffset(event.selected);
     const params = {
       page: event.selected + 1,
-      // search: keyword,
+      q: keyword,
     };
 
     dispatch(getAll(params));
@@ -41,7 +42,7 @@ export default function Post() {
   const changeHandleSearch = (q) => {
     const params = {
       page: 1,
-      search: q,
+      q: q,
     };
     setKeyword(q);
     dispatch(getAll(params));
