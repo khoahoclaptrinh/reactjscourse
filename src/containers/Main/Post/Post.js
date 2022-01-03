@@ -17,6 +17,10 @@ export default function Post() {
     dispatch(getAll(params));
   }, []);
 
+  /**
+   * Bắt sự kiện khi click vào trang
+   * @param {number} event
+   */
   const handlePageChange = (event) => {
     setPageOffset(event.selected);
     const params = {
@@ -27,6 +31,10 @@ export default function Post() {
     dispatch(getAll(params));
   };
 
+  /**
+   * truyền từ khóa search về để gọi api lấy dữ liệu trả về
+   * @param {string} q
+   */
   const changeHandleSearch = (q) => {
     const params = {
       page: 1,
