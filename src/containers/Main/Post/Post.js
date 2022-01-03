@@ -4,14 +4,17 @@ import { getAll } from "../../../actions/postActions";
 import Loading from "../../../components/common/Loading";
 import ListPost from "../../../components/Post/ListPost";
 import Pagination from "../../../components/common/Pagination";
+import Search from "../../../components/Post/Search";
 
 export default function Post() {
   const dataPost = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
   const [pageOffset, setPageOffset] = useState(0);
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     const params = {};
+    setKeyword("");
     dispatch(getAll(params));
   }, []);
 
@@ -21,6 +24,15 @@ export default function Post() {
       page: event.selected + 1,
     };
 
+    dispatch(getAll(params));
+  };
+
+  const changeHandleSearch = (q) => {
+    const params = {
+      page: 1,
+      search: q,
+    };
+    setKeyword(q);
     dispatch(getAll(params));
   };
 
@@ -43,6 +55,7 @@ export default function Post() {
     <section className="py-5 text-center container">
       <div className="row py-lg-5">
         <div className="col-lg-6 col-md-8 mx-auto"></div>
+        <Search keyword={keyword} changeHandleSearch={changeHandleSearch} />
         {content}
         <Pagination
           totalPage={totalPage}
