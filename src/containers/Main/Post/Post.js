@@ -22,6 +22,7 @@ export default function Post() {
     setPageOffset(event.selected);
     const params = {
       page: event.selected + 1,
+      //search: keyword,
     };
 
     dispatch(getAll(params));
