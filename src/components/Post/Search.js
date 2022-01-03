@@ -36,7 +36,6 @@ const Search = (props) => {
         className="form-control"
         placeholder="Vui lòng nhập tên"
         aria-label="Recipient's username"
-        aria-describedby="button-addon2"
         onChange={changeSearch}
         onKeyDown={searchKeyDown}
         value={search}
@@ -44,7 +43,6 @@ const Search = (props) => {
       <button
         className="btn btn-outline-secondary"
         type="button"
-        id="button-addon2"
         onClick={searchHandle}
       >
         Tìm kiếm
