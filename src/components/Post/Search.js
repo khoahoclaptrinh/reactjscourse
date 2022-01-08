@@ -31,7 +31,7 @@ const Search = (props) => {
   };
 
   return (
-    <div className="input-group mb-3">
+    <div className="input-group mb-3" >
       <input
         type="text"
         className="form-control"
