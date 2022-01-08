@@ -5858,10 +5858,10 @@
     "relateurl" "^0.2.7"
     "terser" "^4.6.3"
 
-"html-react-parser@^1.4.4":
-  "integrity" "sha512-7G44bVuoH2chiCDxOfyWMiFl5q9GWtMokbaL48dIC6KjWGEzjKh6oA36ziz8emaQFOhCJcXpFrvTHpuWdHpORg=="
-  "resolved" "https://registry.npmjs.org/html-react-parser/-/html-react-parser-1.4.4.tgz"
-  "version" "1.4.4"
+"html-react-parser@^1.4.5":
+  "integrity" "sha512-dxo0z1G9b3mS1VGmcVw4cUGwVsEwkJZZ7r29pOSdE69JukJyFTCL1I6TXSEp2p1LAHvuO6ZBiEVp2M5lXqKLAg=="
+  "resolved" "https://registry.npmjs.org/html-react-parser/-/html-react-parser-1.4.5.tgz"
+  "version" "1.4.5"
   dependencies:
     "domhandler" "4.3.0"
     "html-dom-parser" "1.0.4"
