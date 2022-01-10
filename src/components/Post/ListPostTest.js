@@ -1,11 +1,23 @@
 import parse from "html-react-parser";
 import React, { useState } from "react";
-export default function ListPost({ dataPost }) {
+import { Modal, Button } from 'react-bootstrap';
+export default function ListPostTest({ dataPost }) {
 
   const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItemTwo, setSelectedItemTwo] = useState(0);
+  const [show, setShow] = useState(false);
+
   const showDetail = (item) => {
     setSelectedItem(item.id);
   };
+
+  const showDetailTwo = (item) => {
+    setSelectedItemTwo(item);
+    setShow(true);
+  }
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <div className="container">
@@ -25,6 +37,7 @@ export default function ListPost({ dataPost }) {
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm me-md-2"
+                  onClick={(e) => showDetailTwo(item, e)}
                 >
                   <i className="bi bi-binoculars-fill"></i> View 2
                 </button>
@@ -45,6 +58,24 @@ export default function ListPost({ dataPost }) {
             </div>
           </div>
         ))}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedItemTwo.id && selectedItemTwo.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedItemTwo.id && parse(selectedItemTwo.description)}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 }
