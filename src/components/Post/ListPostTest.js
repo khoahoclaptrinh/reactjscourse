@@ -27,6 +27,9 @@ export default function ListPostTest({ dataPost }) {
             <div className="row mb-3">
               <div className="col">{item.name}</div>
               <div className="col">
+                <div>
+                  ddd
+                </div>
                 <button
                   type="button"
                   className="btn btn-primary btn-sm me-md-2"

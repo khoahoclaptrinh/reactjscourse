@@ -1,0 +1,19 @@
+const array = [1, 2, 3, 4, 5];
+//Array.prototype.first = function () {
+ //   return this[0];
+//};
+
+//console.log(array.first());
+// expected output: true
+
+
+
+//var first = function(element) { return !!element }    
+//var gotcha = array.find(first)
+//console.log(gotcha)
+
+
+
+const arr = [42, 555, 666, 777]
+const [first] = arr
+console.log(first)
