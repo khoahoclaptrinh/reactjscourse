@@ -4,30 +4,33 @@ import faker from 'faker';
 export default function ListPost({ dataPost }) {
 
   const [selectedItem, setSelectedItem] = useState(0);
-  const pageViewRef = useRef();
+  const pageViewRef = useRef(null);
 
   const showDetail = (item) => {
-    //pageViewRef.current.scrollIntoView({ behavior: 'smooth' })
 
-    window.scrollTo(
-      {
-        top: 0,
-        behavior: 'smooth'
-      }
-    );
+
+    // pageViewRef.current.scrollTo(
+    //   {
+    //     top: 0,
+    //     behavior: 'smooth'
+    //   }
+    // );
 
     setSelectedItem(item.id);
+    window.scrollTo({ behavior: 'smooth', top: pageViewRef.current.offsetTop })
+    //pageViewRef.current.scrollIntoView({ behavior: 'smooth' })
   };
+
 
   let showContent = '';
   if (dataPost.length > 0) {
-
     // Lấy phần tử đầu tiền
     const [first] = dataPost;
     showContent = first;
     if (selectedItem > 0) {
       showContent = dataPost.find(element => element.id == selectedItem);
     }
+
   }
 
   return (
@@ -41,7 +44,11 @@ export default function ListPost({ dataPost }) {
                 key={item.id} onClick={(e) => showDetail(item)}>
                 <div className="row g-0">
                   <div className="col-md-4">
-                    <img src={faker.image.image()} className="img-fluid rounded-start" alt="..." />
+                    <svg class="bd-placeholder-img img-fluid rounded-start" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" focusable="false">
+                      <title>Placeholder</title>
+                      <rect width="100%" height="100%" fill="#868e96"></rect>
+                      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text>
+                    </svg>
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
