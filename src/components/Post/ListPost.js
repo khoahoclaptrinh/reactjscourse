@@ -1,11 +1,23 @@
 import parse from "html-react-parser";
 import React, { useState } from "react";
+import ModalPostDetail from "./ModalPostDetail";
+
 export default function ListPost({ dataPost }) {
 
   const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItemTwo, setSelectedItemTwo] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+
   const showDetail = (item) => {
     setSelectedItem(item.id);
   };
+
+  const showDetailTwo = (item) => {
+    setSelectedItemTwo(item);
+    setModalShow(true);
+    setSelectedItem(0);
+  }
+
 
   return (
     <div className="container">
@@ -25,6 +37,7 @@ export default function ListPost({ dataPost }) {
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm me-md-2"
+                  onClick={(e) => showDetailTwo(item)}
                 >
                   <i className="bi bi-binoculars-fill"></i> View 2
                 </button>
@@ -45,6 +58,13 @@ export default function ListPost({ dataPost }) {
             </div>
           </div>
         ))}
+
+      <ModalPostDetail
+        showItem={selectedItemTwo}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+
     </div>
   );
 }
