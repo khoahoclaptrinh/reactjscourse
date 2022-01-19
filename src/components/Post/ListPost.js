@@ -1,12 +1,14 @@
 import parse from "html-react-parser";
 import React, { useState } from "react";
 import ModalPostDetail from "./ModalPostDetail";
+import { useHistory } from "react-router-dom";
 
 export default function ListPost({ dataPost }) {
 
   const [selectedItem, setSelectedItem] = useState(0);
   const [selectedItemTwo, setSelectedItemTwo] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+  let history = useHistory();
 
   const showDetail = (item) => {
     setSelectedItem(item.id);
@@ -16,6 +18,10 @@ export default function ListPost({ dataPost }) {
     setSelectedItemTwo(item);
     setModalShow(true);
     setSelectedItem(0);
+  }
+
+  const showDetailThree = (item) => {
+    history.push('/post/' + item.id)
   }
 
 
@@ -41,7 +47,9 @@ export default function ListPost({ dataPost }) {
                 >
                   <i className="bi bi-binoculars-fill"></i> View 2
                 </button>
-                <button type="button" className="btn btn-success btn-sm">
+                <button type="button"
+                  onClick={(e) => showDetailThree(item)}
+                  className="btn btn-success btn-sm">
                   <i className="bi bi-view-list"></i> View 3
                 </button>
               </div>

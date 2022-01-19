@@ -5,6 +5,7 @@ import Admin from "./containers/layouts/Admin";
 import Home from "./containers/Main/Home/Home";
 import About from "./containers/Main/About/About";
 import Post from "./containers/Main/Post/Post";
+import PostDetail from "./containers/Main/Post/PostDetail";
 import Register from "./containers/Main/User/Register";
 import Dashboard from "./containers/Admin/Dashboard/Dashboard";
 import { Post as AdminPost } from "./containers/Admin/Post/Post";
@@ -27,6 +28,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
+              <Route path="/post/:id" component={PostDetail} />
               <Route path="/post" component={Post} />
               <Route path="/register" component={Register} />
             </Switch>
